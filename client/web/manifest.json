@@ -1,6 +1,6 @@
 {
-    "name": "onpin",
-    "short_name": "onpin",
+    "name": "Readme",
+    "short_name": "Readme",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
