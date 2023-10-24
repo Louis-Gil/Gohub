@@ -10,7 +10,7 @@ import (
 func setupRouter() *gin.Engine {
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
-		c.String(200, "Hello, HTTP/3!")
+		c.String(200, "Hello, World!")
 	})
 	return r
 }
@@ -19,13 +19,13 @@ func main() {
 	router := setupRouter()
 
 	go func() {
-		if err := router.Run(":8080"); err != nil {
-			log.Fatalf("Failed to run server: %v", err)
+		if err := router.RunTLS(":8080", "./../localhost.crt", "./../localhost.key"); err != nil {
+			log.Fatalf("Failed to run Http/2 server: %v", err)
 		}
 	}()
 
 	server := &http3.Server{
-		Addr: ":8081",
+		Addr:    ":8081",
 		Handler: router,
 	}
 
