@@ -7,7 +7,11 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 )
 
-func Connect() *dynamodb.Client {
+type DBService struct {
+	Client *dynamodb.Client
+}
+
+func Connect() *DBService {
 	cfg, err := config.LoadDefaultConfig(context.TODO(),
 		config.WithRegion("ap-northeast-2"),
 	)
@@ -15,5 +19,5 @@ func Connect() *dynamodb.Client {
 		panic("failed to load config, " + err.Error())
 	}
 
-	return dynamodb.NewFromConfig(cfg)
+	return &DBService{Client: dynamodb.NewFromConfig(cfg)}
 }

@@ -3,9 +3,17 @@ package main
 import (
 	"log"
 
+	"server/infra/db"
+
 	"github.com/gin-gonic/gin"
 	"github.com/quic-go/quic-go/http3"
 )
+
+var DB *db.DBService
+
+func init() {
+	DB = db.Connect()
+}
 
 func setupRouter() *gin.Engine {
 	r := gin.Default()
