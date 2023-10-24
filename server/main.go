@@ -4,8 +4,8 @@ import (
 	"log"
 
 	"server/infra/db"
+	"server/router"
 
-	"github.com/gin-gonic/gin"
 	"github.com/quic-go/quic-go/http3"
 )
 
@@ -15,16 +15,8 @@ func init() {
 	DB = db.Connect()
 }
 
-func setupRouter() *gin.Engine {
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.String(200, "Hello, World!")
-	})
-	return r
-}
-
 func main() {
-	router := setupRouter()
+	router := router.SetupRouter()
 
 	go func() {
 		if err := router.RunTLS(":8080", "./../localhost.crt", "./../localhost.key"); err != nil {
