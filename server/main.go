@@ -20,7 +20,7 @@ func main() {
 
 	go func() {
 		if err := router.RunTLS(":8080", "./../localhost.crt", "./../localhost.key"); err != nil {
-			log.Fatalf("Failed to run Http/2 server: %v", err)
+			log.Fatal("Failed to run Http/2 server")
 		}
 	}()
 
@@ -30,6 +30,6 @@ func main() {
 	}
 
 	if err := server.ListenAndServeTLS("./../localhost.crt", "./../localhost.key"); err != nil {
-		log.Fatalf("Failed to run Http/3 server: %v", err)
+		log.Fatal("Failed to run Http/3 server")
 	}
 }
