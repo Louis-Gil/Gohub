@@ -1,12 +1,10 @@
 package main
 
 import (
-	"log"
+	"github.com/aws/aws-lambda-go/lambda"
 
 	"server/infra/db"
-	"server/router"
-
-	"github.com/quic-go/quic-go/http3"
+	"server/handler"
 )
 
 var DB *db.DBService
@@ -16,20 +14,5 @@ func init() {
 }
 
 func main() {
-	router := router.SetupRouter()
-
-	go func() {
-		if err := router.RunTLS(":8080", "./../localhost.crt", "./../localhost.key"); err != nil {
-			log.Fatal("Failed to run Http/2 server")
-		}
-	}()
-
-	server := &http3.Server{
-		Addr:    ":8081",
-		Handler: router,
-	}
-
-	if err := server.ListenAndServeTLS("./../localhost.crt", "./../localhost.key"); err != nil {
-		log.Fatal("Failed to run Http/3 server")
-	}
+	lambda.Start(handler.HandleRequest)
 }
