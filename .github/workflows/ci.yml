@@ -54,7 +54,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          args:
+          args: 
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
 
@@ -68,6 +68,10 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,message
+          text: 'CI Build ${{ job.status }} for ${{ github.repository }}'
+          username: 'GitHub CI Bot'
+          icon_emoji: ':octocat:'
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
