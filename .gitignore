@@ -56,6 +56,7 @@ doc/api/
 
 # Go workspace file
 go.work
+go.work.sum
 
 # End of https://www.toptal.com/developers/gitignore/api/dart,go
 
