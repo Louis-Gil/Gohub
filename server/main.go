@@ -1,15 +1,18 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/aws/aws-lambda-go/lambda"
+
+	"server/infra/db"
+	"server/handler"
 )
 
+var DB *db.DBService
+
+func init() {
+	DB = db.Connect()
+}
+
 func main() {
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "ok",
-		})
-	})
-	r.Run()
+	lambda.Start(handler.HandleRequest)
 }
