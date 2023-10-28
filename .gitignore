@@ -54,10 +54,6 @@ doc/api/
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-# Go workspace file
-go.work
-go.work.sum
-
 # End of https://www.toptal.com/developers/gitignore/api/dart,go
 
 # SSL
