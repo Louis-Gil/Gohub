@@ -61,6 +61,7 @@ jobs:
   notify-slack:
     needs: [build-and-test-server, test-structure, Analysis]
     runs-on: ubuntu-latest
+    if: always()
     steps:
       - name: Notify Slack
         uses: 8398a7/action-slack@v3
