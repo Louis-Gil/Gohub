@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.21.3'
+          cache: false
 
       - name: Build Go
         run: make -C server build
@@ -40,6 +41,7 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.21.3'
+          cache: false
 
       - name: Test Go
         run: make -C structure test
