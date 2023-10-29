@@ -9,7 +9,7 @@ build:
 build-prod: MODE=PROD
 build-prod:
 	@echo "Building in $(MODE) mode"
-	GOOS=linux GOARCH=amd64 go build -tags="$(MODE) lambda.norpc" -o server main.go 
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -tags="$(MODE) lambda.norpc" -o server main.go 
 	
 clean:
 	go clean
