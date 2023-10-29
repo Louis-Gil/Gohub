@@ -1,5 +1,5 @@
 FROM public.ecr.aws/lambda/provided:al2
 
-COPY . /var/task/
+COPY server /var/task/
 
 ENTRYPOINT [ "./server" ]

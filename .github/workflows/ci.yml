@@ -66,13 +66,13 @@ jobs:
       - name: Notify Slack
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
+          status: custom
           fields: repo,workflow
           custom_payload: |
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `'CI Build ${{ job.status }} for ${{ github.repository }}`,
+                text: 'CI Process   ${{ job.status }}   for ${{ github.repository }}',
               }]
             }
         env:
