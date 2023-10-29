@@ -44,7 +44,7 @@ jobs:
           cache: false
 
       - name: Test Go
-        run: make -C structure test
+        run: make -C go test
 
   Analysis:
     runs-on: ubuntu-latest
