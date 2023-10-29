@@ -28,7 +28,7 @@ jobs:
       - name: Test Go
         run: make -C server test
 
-  test-structure:
+  test-source:
     runs-on: ubuntu-latest
 
     steps:
@@ -59,7 +59,7 @@ jobs:
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
 
   notify-slack:
-    needs: [build-and-test-server, test-structure, Analysis]
+    needs: [build-and-test-server, test-source, Analysis]
     runs-on: ubuntu-latest
     if: always()
     steps:
