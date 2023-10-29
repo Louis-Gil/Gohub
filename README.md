@@ -7,7 +7,9 @@ Gohub is a repository of go-lang materials
 go directory contains algorithms and data structures written in go-lang
 
 go
+
 ├── algorithm
+
 ├── structure
 
 if you want to run tests, you should run the following command:
