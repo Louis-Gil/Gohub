@@ -26,7 +26,7 @@ jobs:
           cache: false
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v1-node16
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -34,8 +34,8 @@ jobs:
 
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-        
+        uses: aws-actions/amazon-ecr-login@v2
+
       - name: Extract version
         id: extract_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
@@ -43,7 +43,7 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR
         run: |
           make -C server build-prod
-          docker build -t ${{ secrets.AWS_ECR_SERVER_REPOSITORY }}:latest -f server/Dockerfile server
+          docker build -t ${{ secrets.AWS_ECR_SERVER_REPOSITORY }}:latest -f server/Dockerfile server -q
           docker tag ${{ secrets.AWS_ECR_SERVER_REPOSITORY }}:latest ${{ steps.login-ecr.outputs.registry }}/${{ secrets.AWS_ECR_SERVER_REPOSITORY}}:${{ steps.extract_version.outputs.VERSION }}
           docker push ${{ steps.login-ecr.outputs.registry }}/${{ secrets.AWS_ECR_SERVER_REPOSITORY }}:${{ steps.extract_version.outputs.VERSION }}
 
@@ -52,7 +52,7 @@ jobs:
           FUNCTION_NAME=${{ secrets.AWS_LAMBDA_SERVER_FUNC_NAME }}
           NEW_IMAGE_URI="${{ steps.login-ecr.outputs.registry }}/${{ secrets.AWS_ECR_SERVER_REPOSITORY }}:${{ steps.extract_version.outputs.VERSION }}"
           
-          aws lambda update-function-code --function-name $FUNCTION_NAME --image-uri $NEW_IMAGE_URI
+          aws lambda update-function-code --function-name $FUNCTION_NAME --image-uri $NEW_IMAGE_URI -o json
         if: success()
 
       - name: Notify Slack
