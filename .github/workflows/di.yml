@@ -48,14 +48,15 @@ jobs:
           docker push ${{ steps.login-ecr.outputs.registry }}/${{ secrets.AWS_ECR_SERVER_REPOSITORY }}:${{ steps.extract_version.outputs.VERSION }}
 
       - name: Update Lambda Function Container Image
+        if: success()
         run: |
           FUNCTION_NAME=${{ secrets.AWS_LAMBDA_SERVER_FUNC_NAME }}
           NEW_IMAGE_URI="${{ steps.login-ecr.outputs.registry }}/${{ secrets.AWS_ECR_SERVER_REPOSITORY }}:${{ steps.extract_version.outputs.VERSION }}"
           
-          aws lambda update-function-code --function-name $FUNCTION_NAME --image-uri $NEW_IMAGE_URI -o json
-        if: success()
+          aws lambda update-function-code --function-name $FUNCTION_NAME --image-uri $NEW_IMAGE_URI > /dev/null
 
       - name: Notify Slack
+        if: always()
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
