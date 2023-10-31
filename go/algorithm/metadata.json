@@ -5,6 +5,12 @@
         "bubble_sort.go"
       ],
       "tags": []
+    },
+    "/selection_sort": {
+      "files": [
+        "selection_sort.go"
+      ],
+      "tags": []
     }
   }
 }
