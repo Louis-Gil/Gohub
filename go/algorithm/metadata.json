@@ -17,6 +17,12 @@
         "insertion_sort.go"
       ],
       "tags": []
+    },
+    "/merge_sort": {
+      "files": [
+        "merge_sort.go"
+      ],
+      "tags": []
     }
   }
 }
