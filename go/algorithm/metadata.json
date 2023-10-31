@@ -11,6 +11,12 @@
         "selection_sort.go"
       ],
       "tags": []
+    },
+    "/insertion_sort": {
+      "files": [
+        "insertion_sort.go"
+      ],
+      "tags": []
     }
   }
 }

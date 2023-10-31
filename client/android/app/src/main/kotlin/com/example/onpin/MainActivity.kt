@@ -1,4 +1,4 @@
-package com.example.Readme
+package com.example.Gohub
 
 import io.flutter.embedding.android.FlutterActivity
 
