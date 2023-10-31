@@ -1,0 +1,10 @@
+{
+  "/sort": {
+    "/bubble_sort": {
+      "files": [
+        "bubble_sort.go"
+      ],
+      "tags": []
+    }
+  }
+}
