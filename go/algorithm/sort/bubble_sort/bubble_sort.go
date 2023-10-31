@@ -1,4 +1,4 @@
-package bubblesort
+package mybubblesort
 
 func MyBubbleSort(s []int) {
 	for i := 0; i < len(s); i++ {

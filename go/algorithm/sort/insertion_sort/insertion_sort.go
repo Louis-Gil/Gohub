@@ -1,4 +1,4 @@
-package insertionsort
+package myinsertionsort
 
 func MyInsertionSort(slice []int) {
 	for i := 1; i < len(slice); i++ {

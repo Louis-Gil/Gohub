@@ -1,4 +1,4 @@
-package selectionsort
+package myselectionsort
 
 import (
 	"testing"

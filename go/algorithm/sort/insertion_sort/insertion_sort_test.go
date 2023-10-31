@@ -1,4 +1,4 @@
-package insertionsort
+package myinsertionsort
 
 import (
 	"testing"
