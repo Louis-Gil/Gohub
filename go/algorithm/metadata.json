@@ -23,6 +23,12 @@
         "merge_sort.go"
       ],
       "tags": []
+    },
+    "/quick_sort": {
+      "files": [
+        "quick_sort.go"
+      ],
+      "tags": []
     }
   }
 }
