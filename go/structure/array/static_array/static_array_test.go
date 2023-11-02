@@ -1,12 +1,12 @@
-package myarray
+package mystaticarray
 
 import (
 	"testing"
 	"unsafe"
 )
 
-func TestMyArray (t *testing.T) {
-	arr := NewMyArray(10, unsafe.Sizeof(int(0)))
+func TestMyStaticArray (t *testing.T) {
+	arr := NewMyStaticArray(10, unsafe.Sizeof(int(0)))
 
 	val1 := 42
 	arr.Set(0, unsafe.Pointer(&val1))
@@ -28,7 +28,7 @@ func TestMyArray (t *testing.T) {
 }
 
 func TestOutOfBounds(t *testing.T) {
-	arr := NewMyArray(2, unsafe.Sizeof(int(0)))
+	arr := NewMyStaticArray(2, unsafe.Sizeof(int(0)))
 
 	defer func() {
 		if r := recover(); r == nil {
