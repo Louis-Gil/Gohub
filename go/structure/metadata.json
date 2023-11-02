@@ -1,12 +1,12 @@
 {
-  "/array": {
-    "/static_array": {
-      "files": [
-        "static_array.go"
-      ],
-      "tags": [
-        "unsafe"
-      ]
-    }
-  }
+	"/array": {
+		"/static_array": {
+			"files": ["static_array.go"],
+			"tags": ["unsafe"]
+		},
+		"/dynamic_array": {
+			"files": ["dynamic_array.go"],
+			"tags": []
+		}
+	}
 }
