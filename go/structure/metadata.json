@@ -1,12 +1,11 @@
 {
   "/array": {
-    "/array": {
+    "/static_array": {
       "files": [
-        "array.go"
+        "static_array.go"
       ],
       "tags": [
-        "unsafe",
-        "basic"
+        "unsafe"
       ]
     }
   }

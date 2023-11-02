@@ -1,28 +1,29 @@
-package myarray
+package mystaticarray
 
 import (
 	"unsafe"
 )
 
-type MyArray struct {
+type MyStaticArray struct {
 	data unsafe.Pointer
 	length int
 	elemSize uintptr
 }
 
-func NewMyArray(length int, elemSize uintptr) *MyArray {
-	return &MyArray{
-		data: unsafe.Pointer(new([100000]byte)),
+func NewMyStaticArray(length int, elemSize uintptr) *MyStaticArray {
+	mem := make([]byte, length * int(elemSize))
+	return &MyStaticArray{
+		data: unsafe.Pointer(&mem[0]),
 		length: length,
 		elemSize: elemSize,
 	}
 }
 
-func (a *MyArray) Len() int {
+func (a *MyStaticArray) Len() int {
 	return a.length
 }
 
-func (a *MyArray) Set(index int, value unsafe.Pointer) {
+func (a *MyStaticArray) Set(index int, value unsafe.Pointer) {
 	if index < 0 || index >= a.length {
 		panic("index out of range")
 	}
@@ -30,7 +31,7 @@ func (a *MyArray) Set(index int, value unsafe.Pointer) {
 	*(*uintptr)(elem) = uintptr(value)
 }
 
-func (a *MyArray) Get(index int) unsafe.Pointer {
+func (a *MyStaticArray) Get(index int) unsafe.Pointer {
 	if index < 0 || index >= a.length {
 		panic("index out of range")
 	}
