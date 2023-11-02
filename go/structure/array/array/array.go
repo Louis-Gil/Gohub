@@ -1,4 +1,4 @@
-package array
+package myarray
 
 import (
 	"unsafe"

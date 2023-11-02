@@ -1,0 +1,13 @@
+{
+  "/array": {
+    "/array": {
+      "files": [
+        "array.go"
+      ],
+      "tags": [
+        "unsafe",
+        "basic"
+      ]
+    }
+  }
+}

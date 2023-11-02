@@ -1,0 +1,34 @@
+{
+  "/sort": {
+    "/bubble_sort": {
+      "files": [
+        "bubble_sort.go"
+      ],
+      "tags": []
+    },
+    "/selection_sort": {
+      "files": [
+        "selection_sort.go"
+      ],
+      "tags": []
+    },
+    "/insertion_sort": {
+      "files": [
+        "insertion_sort.go"
+      ],
+      "tags": []
+    },
+    "/merge_sort": {
+      "files": [
+        "merge_sort.go"
+      ],
+      "tags": []
+    },
+    "/quick_sort": {
+      "files": [
+        "quick_sort.go"
+      ],
+      "tags": []
+    }
+  }
+}
