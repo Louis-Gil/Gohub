@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/aws/aws-lambda-go/lambda"
 
-	"server/infra/db"
 	"server/handler"
+	"server/infra/db"
 )
 
 var DB *db.DBService

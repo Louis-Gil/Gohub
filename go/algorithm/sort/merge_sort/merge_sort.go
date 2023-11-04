@@ -1,6 +1,5 @@
 package mymergesort
 
-
 func MyMergeSort(s []int) {
 	result := mergeSort(s)
 	copy(s, result)
