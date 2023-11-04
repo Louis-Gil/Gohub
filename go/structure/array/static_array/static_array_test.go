@@ -27,7 +27,7 @@ func TestMyStaticArray(t *testing.T) {
 	}
 }
 
-func TestOutOfBounds(t *testing.T) {
+func TestMyStaticArrayOutOfBounds(t *testing.T) {
 	arr := NewMyStaticArray(2, unsafe.Sizeof(int(0)))
 
 	defer func() {
