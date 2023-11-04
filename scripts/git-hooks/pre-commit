@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# go vet 실행
+go vet ./server/...
+go vet ./go/...
+if [ $? != 0 ]; then
+  echo "Go vet 검사 실패"
+  exit 1
+fi
+
+exit 0
