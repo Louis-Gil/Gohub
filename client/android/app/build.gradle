@@ -22,6 +22,16 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def releaseStorePassword = localProperties.getProperty('release.storePassword')
+if (releaseStorePassword == null) {
+    releaseStorePassword = 'password'
+}
+
+def releaseKeyPassword = localProperties.getProperty('release.keyPassword')
+if (releaseKeyPassword == null) {
+    releaseKeyPassword = 'password'
+}
+
 android {
     namespace "com.example.Gohub"
     compileSdkVersion flutter.compileSdkVersion
@@ -56,6 +66,21 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('release-key.keystore')
+            storePassword releaseStorePassword
+            keyAlias 'key-alias'
+            keyPassword releaseKeyPassword
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
         }
     }
 }
