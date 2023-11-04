@@ -8,5 +8,11 @@
 			"files": ["dynamic_array.go"],
 			"tags": []
 		}
-	}
+	},
+  "linked_list": {
+    "/singly_linked_list": {
+      "files": ["singly_linked_list.go"],
+      "tags": []
+    }
+  }
 }
