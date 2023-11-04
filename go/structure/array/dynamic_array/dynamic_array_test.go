@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestMyDynamicArray (t *testing.T) {
+func TestMyDynamicArray(t *testing.T) {
 	arr := NewMyDynamicArray[int]()
 
 	if got := arr.Len(); got != 0 {

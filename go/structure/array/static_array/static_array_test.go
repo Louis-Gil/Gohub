@@ -5,7 +5,7 @@ import (
 	"unsafe"
 )
 
-func TestMyStaticArray (t *testing.T) {
+func TestMyStaticArray(t *testing.T) {
 	arr := NewMyStaticArray(10, unsafe.Sizeof(int(0)))
 
 	val1 := 42
@@ -13,7 +13,7 @@ func TestMyStaticArray (t *testing.T) {
 
 	val2 := 35
 	arr.Set(1, unsafe.Pointer(&val2))
-	
+
 	if got := arr.Len(); got != 10 {
 		t.Errorf("arr.Len() = %d; want 10", got)
 	}
