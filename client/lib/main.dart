@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:go_hub/providers/auth.dart';
-import 'package:go_hub/screens/splash.dart';
+import 'package:gohub/providers/auth.dart';
+import 'package:gohub/screens/splash.dart';
 
 void main() {
   runApp(
