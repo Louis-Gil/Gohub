@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:go_hub/providers/auth.dart';
 import 'package:go_hub/screens/home.dart';
-import 'package:go_hub/screens/signin.dart';
+import 'package:go_hub/screens/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
