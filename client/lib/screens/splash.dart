@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
+import 'package:go_hub/providers/auth.dart';
 import 'package:go_hub/screens/home.dart';
 import 'package:go_hub/screens/signin.dart';
 
@@ -15,23 +16,31 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _navigateToHome();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkLoginStatus();
+    });
   }
 
-  Future<void> _navigateToHome() async {
+  Future<void> _checkLoginStatus() async {
     await Future.delayed(const Duration(seconds: 2), () {});
 
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    final isLoggedIn =
+        Provider.of<AuthProvider>(context, listen: false).isLoggedIn;
+    if (isLoggedIn) {
+      _navigateToHome();
+    } else {
+      _navigateToLogin();
+    }
+  }
 
-    if (!mounted) return;
+  void _navigateToHome() {
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
+  }
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => isLoggedIn ? const HomeScreen() : LoginScreen(),
-      ),
-    );
+  void _navigateToLogin() {
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (_) => LoginScreen()));
   }
 
   @override

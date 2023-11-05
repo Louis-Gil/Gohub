@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_hub/providers/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:go_hub/screens/splash.dart';
 
 void main() {
   runApp(
-    Provider<String>(
-      create: (context) => 'Hello World',
+    ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
       child: const MyApp(),
     ),
   );
