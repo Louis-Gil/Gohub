@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:gohub/screens/home.dart';
@@ -6,8 +7,10 @@ import 'package:gohub/screens/login.dart';
 
 class AuthProvider with ChangeNotifier {
   bool _isLoggedIn = false;
+  GoogleSignInAccount? _googleUser;
 
   bool get isLoggedIn => _isLoggedIn;
+  GoogleSignInAccount? get googleUser => _googleUser;
 
   AuthProvider() {
     initialize();
@@ -15,12 +18,15 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> initialize() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    _isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    // _isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    _isLoggedIn = false;
     notifyListeners();
   }
 
-  Future<void> setLoginStatus(bool status) async {
+  Future<void> setLoginStatus(
+      bool status, GoogleSignInAccount? googleUser) async {
     _isLoggedIn = status;
+    _googleUser = googleUser;
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isLoggedIn', status);
     notifyListeners();

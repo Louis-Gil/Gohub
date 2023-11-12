@@ -15,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
+      'openid',
       'https://www.googleapis.com/auth/contacts.readonly',
     ],
   );
@@ -30,8 +31,13 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _handleSignIn(BuildContext context) async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      final String? idToken = googleAuth?.idToken;
+
       if (googleUser != null) {
-        await authProvider.setLoginStatus(true);
+        await authProvider.setLoginStatus(true, googleUser);
       }
     } catch (error) {
       showErrorSnackBar('Sign in failed: $error');
