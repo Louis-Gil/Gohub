@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:gohub/providers/auth.dart';
-import 'package:gohub/screens/home.dart';
-import 'package:gohub/screens/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -41,11 +39,10 @@ class SplashScreenState extends State<SplashScreen> {
             ),
           );
         } else if (snapshot.connectionState == ConnectionState.done) {
-          if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn) {
-            _navigateToHome();
-          } else {
-            _navigateToLogin();
-          }
+          final authProvider =
+              Provider.of<AuthProvider>(context, listen: false);
+          authProvider.navigateToHome(context);
+
           return Container();
         } else {
           return const Scaffold(
@@ -56,23 +53,5 @@ class SplashScreenState extends State<SplashScreen> {
         }
       },
     );
-  }
-
-  void _navigateToHome() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const HomeScreen()));
-      }
-    });
-  }
-
-  void _navigateToLogin() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (_) => const LoginScreen()));
-      }
-    });
   }
 }
