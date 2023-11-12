@@ -1,6 +1,7 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.gilbom.gohub">
     <application
-        android:label="Gohub"
+        android:label="gohub"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
