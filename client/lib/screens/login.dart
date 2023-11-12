@@ -2,20 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
 
   Future<void> _handleSignIn() async {
     try {
-      await _googleSignIn.signIn();
-      // on success, you can get the user's details as follows:
-      final GoogleSignInAccount? user = _googleSignIn.currentUser;
-      print('User name: ${user?.displayName}');
-      // You can now use this user information for your app's needs
+      final GoogleSignInAccount? googleUser =
+          await _googleSignIn.signIn();
+      print(googleUser);
+      // Handle the success scenario
+      
     } catch (error) {
       print('Sign in failed: $error');
       // Handle the error scenario
@@ -27,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Center(
       child: ElevatedButton(
         onPressed: _handleSignIn,
-        child: Text('Sign in with Google'),
+        child: const Text('Sign in with Google'),
       ),
     );
   }

@@ -71,7 +71,7 @@ class SplashScreenState extends State<SplashScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (_) => LoginScreen()));
+            .pushReplacement(MaterialPageRoute(builder: (_) => const LoginScreen()));
       }
     });
   }

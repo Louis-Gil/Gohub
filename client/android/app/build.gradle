@@ -71,7 +71,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('release-key.keystore')
+            storeFile file('../release-key.keystore')
             storePassword releaseStorePassword
             keyAlias 'key-alias'
             keyPassword releaseKeyPassword
@@ -80,6 +80,9 @@ android {
 
     buildTypes {
         release {
+            signingConfig signingConfigs.release
+        }
+        debug {
             signingConfig signingConfigs.release
         }
     }
